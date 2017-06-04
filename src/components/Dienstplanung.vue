@@ -7,6 +7,7 @@
             <li v-if="config" v-for="employee in config.employees" v-text="employee.firstName"></li>
         </ul>
 
+        <vehicle v-for="vehicle in vehicles" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
     </div>
 </template>
 
