@@ -1,6 +1,8 @@
 <!-- Template -->
 <template>
     <div id="dienstplanung">
+        <employee-list v-show="isEmployeeListOpen" v-bind:employees="employees"></employee-list>
+
         <h1 v-text="heading"></h1>
 
         <ul>
