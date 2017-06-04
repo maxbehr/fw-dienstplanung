@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Dienstplanung from './components/Dienstplanung.vue'
+import Dienstplanung from './components/Dienstplanung.vue';
 
 export default {
   name: 'app',

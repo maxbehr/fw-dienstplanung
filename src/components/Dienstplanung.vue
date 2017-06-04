@@ -12,6 +12,8 @@
 
 <!-- Script -->
 <script>
+import Vehicle from './Vehicle.vue';
+
 export default {
     name: 'dienstplanung',
     data: function(){
@@ -38,6 +40,8 @@ export default {
         let self = this;
         self.init();
     },
+    components: {
+        'vehicle': Vehicle
     }
 }
 </script>
