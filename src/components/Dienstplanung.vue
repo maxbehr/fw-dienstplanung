@@ -1,9 +1,11 @@
+<!-- Template -->
 <template>
     <div id="dienstplanung">
         <h1 v-text="heading"></h1>
     </div>
 </template>
 
+<!-- Script -->
 <script>
 export default {
     name: 'dienstplanung',
@@ -16,6 +18,7 @@ export default {
 }
 </script>
 
+<!-- Style -->
 <style scoped>
 
 </style>
