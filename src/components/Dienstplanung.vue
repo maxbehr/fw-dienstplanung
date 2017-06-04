@@ -16,6 +16,7 @@
 <!-- Script -->
 <script>
 import Vehicle from './Vehicle.vue';
+import EmployeeList from './EmployeeList.vue';
 
 export default {
     name: 'dienstplanung',
@@ -49,7 +50,8 @@ export default {
         self.init();
     },
     components: {
-        'vehicle': Vehicle
+        'vehicle': Vehicle,
+        'employee-list': EmployeeList
     }
 }
 </script>
