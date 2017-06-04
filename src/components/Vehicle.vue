@@ -31,6 +31,18 @@ export default {
 </script>
 
 <!-- Style -->
-<style scoped>
+<style lang="stylus" scoped>
+#vehicle
+    border: 1px solid black
+    padding: 5px 10px
 
+    .seats
+        list-style-type: none
+        padding: 0
+
+        li
+            border: 1px dotted black
+            padding: 5px 10px
+            margin-bottom: 5px
+            color: red
 </style>
