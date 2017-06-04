@@ -4,7 +4,10 @@
         <h3 v-text="name"></h3>
 
         <ul class="seats">
-            <li v-for="seat in seats" v-text="seat.label"></li>
+            <li class="seat-bag" v-for="seat in seats">
+                <span v-text="seat.label"></span>
+                <span class="employee" v-on:click="toggleEmployeeList">Mitarbeiter</span>
+            </li>
         </ul>
     </div>
 </template>
@@ -25,6 +28,9 @@ export default {
         init: function() {
             var self = this;
 
+        },
+        toggleEmployeeList: function(event) {
+            this.$emit('toggleEmployeeList', event);
         }
     }
 }
@@ -41,8 +47,10 @@ export default {
         padding: 0
 
         li
-            border: 1px dotted black
             padding: 5px 10px
             margin-bottom: 5px
-            color: red
+
+            span.employee
+                border: 1px dotted black
+                color: red
 </style>

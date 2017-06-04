@@ -1,15 +1,14 @@
 <!-- Template -->
 <template>
     <div id="dienstplanung">
-        <employee-list v-show="isEmployeeListOpen" v-bind:employees="employees"></employee-list>
-
+        <employee-list v-show="employeeListOptions.isEmployeeListOpen" v-bind:options="employeeListOptions"></employee-list>
         <h1 v-text="heading"></h1>
 
         <ul>
             <li v-if="config" v-for="employee in config.employees" v-text="employee.firstName"></li>
         </ul>
 
-        <vehicle v-for="vehicle in vehicles" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
+        <vehicle v-on:toggleEmployeeList="toggleEmployeeList" v-for="vehicle in vehicles" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
     </div>
 </template>
 
@@ -23,10 +22,22 @@ export default {
     data: function(){
         return {
             heading: 'Feuerwehr Dienstplanung',
-            config: '',
             employees: '',
-            vehicles: ''
+            vehicles: '',
+            employeeListOptions: {
+                isEmployeeListOpen: true,
+                employees: [],
+                position: ''
+            }
         }
+    },
+    watch: {
+      employeeListOptions: function(changes) {
+        if(changes) {
+            let offset = 20;
+            $('div#employee-list').css({'top': this.employeeListOptions.position.top+offset, 'left': this.employeeListOptions.position.left });
+        }
+      }
     },
     methods: {
         init: function() {
@@ -38,11 +49,20 @@ export default {
                 this.employees = config.employees;
                 this.vehicles = config.vehicles;
 
+                this.employeeListOptions.employees = this.employees;
+
                 //  Map seats
                 this.vehicles.forEach(vehicle => {
                     vehicle.seats = vehicle.seats.map(seat => ({ id: seat, label: config.seats[seat] }) );
                 });
             }, response => { });
+        },
+        toggleEmployeeList: function(event) {
+            this.employeeListOptions.isEmployeeListOpen = !this.employeeListOptions.isEmployeeListOpen;
+            if(event) {
+                let pos = { top: event.target.offsetTop, left: event.target.offsetLeft };
+                this.employeeListOptions.position = pos;
+            }
         }
     },
     mounted: function () {

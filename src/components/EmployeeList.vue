@@ -18,12 +18,19 @@ export default {
         }
     },
     props: [
-        'employees',
-        'isOpen'
+        'options'
     ],
     computed: {
         filteredEmployees: function() {
-            return this.employees && this.employees.filter(e => e.firstName.includes(this.searchText) || e.lastName.includes(this.searchText));
+            return this.options &&
+                this.options.employees &&
+                this.options.employees.filter(e => {
+                    let fn = e.firstName.toLowerCase();
+                    let ln = e.lastName.toLowerCase();
+                    let st = this.searchText.toLowerCase();
+
+                    return fn.includes(st) || ln.includes(st);
+                });
         }
     },
     methods: {
