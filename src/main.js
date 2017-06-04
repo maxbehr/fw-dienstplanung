@@ -1,8 +1,11 @@
 global.$ = require('jquery');
 global.jQuery = $;
 
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+var VueResource = require('vue-resource');
+Vue.use(VueResource);
+
+import App from './App.vue';
 
 require('./main.js');
 
