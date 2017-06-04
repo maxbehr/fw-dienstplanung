@@ -32,7 +32,7 @@ export default {
         }
     },
     watch: {
-      employeeListOptions: function(changes) {
+      'employeeListOptions.isEmployeeListOpen': function(changes) {
         if(changes) {
             let offset = 20;
             $('div#employee-list').css({'top': this.employeeListOptions.position.top+offset, 'left': this.employeeListOptions.position.left });
