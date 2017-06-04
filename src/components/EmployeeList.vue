@@ -54,6 +54,7 @@ export default {
 #employees
     list-style-type: none
     padding: 5px 10px
+    margin: 0
 
     li
         font-size: 11px
