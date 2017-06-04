@@ -4,7 +4,7 @@
         <h3 v-text="name"></h3>
 
         <ul class="seats">
-            <li v-for="seat in seats" v-text="seat"></li>
+            <li v-for="seat in seats" v-text="seat.label"></li>
         </ul>
     </div>
 </template>

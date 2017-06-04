@@ -19,20 +19,25 @@ export default {
     data: function(){
         return {
             heading: 'Feuerwehr Dienstplanung',
-            config: ""
+            config: '',
+            employees: '',
+            vehicles: ''
         }
     },
     methods: {
         init: function() {
-            var self = this;
-
             let uri = 'src/config/config.json';
-
-            // GET /someUrl
             this.$http.get(uri).then(response => {
+                let config = JSON.parse(response.bodyText);
 
                 // get body data
-                this.config = JSON.parse(response.bodyText);
+                this.employees = config.employees;
+                this.vehicles = config.vehicles;
+
+                //  Map seats
+                this.vehicles.forEach(vehicle => {
+                    vehicle.seats = vehicle.seats.map(seat => ({ id: seat, label: config.seats[seat] }) );
+                });
             }, response => { });
         }
     },

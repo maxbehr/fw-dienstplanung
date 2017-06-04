@@ -4,10 +4,10 @@
 		"1": "Sitz",
 		"2": "Leiter"
 	},
-	"vehicles": {
-		"HLF": [1,2,3],
-		"NEF": [1,2]
-	},
+	"vehicles": [
+		{ "name": "HLF", "seats": [0,1,2] },
+		{ "name": "NEF", "seats": [0,1] }
+	],
 	"employees": [
 		{ "firstName": "Ranj", "lastName": "Dubashinsky", "license": {
 				"HLF": [1]
