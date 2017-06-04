@@ -57,7 +57,7 @@
 		{ "firstName": "Four", "lastName": "Korrall", "license": {
 				"HLF": [1]
 			}
-		},
+		}
 
 	]
 }
