@@ -7,7 +7,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 	state: {
 		employees: '',
-		vehicles: ''
+		vehicles: '',
+		seats: ''
 	},
 	actions: {
 		LOAD_CONFIG: function ({ commit }) {
@@ -26,6 +27,12 @@ const store = new Vuex.Store({
 		SET_CONFIG: (state, { list }) => {
 			state.employees = list.employees;
 			state.vehicles = list.vehicles;
+			state.seats = list.seats;
+
+            //  Map new objects for seats
+            state.vehicles.forEach(vehicle => {
+                vehicle.seats = vehicle.seats.map(seat => ({ id: seat, label: state.seats[seat], employee: null }) );
+            });
 		}
 	},
 	getters: {
