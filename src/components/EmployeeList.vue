@@ -3,7 +3,7 @@
     <div id="employee-list">
         <input id="employee-search" type="text" v-model="searchText">
         <ul id="employees">
-            <li v-for="employee in filteredEmployees" v-text="employee.firstName"></li>
+            <li @click="selectEmployeeForSeat(employee)" v-for="employee in filteredEmployees" v-text="employee.firstName"></li>
         </ul>
     </div>
 </template>
@@ -37,6 +37,9 @@ export default {
         init: function() {
             var self = this;
 
+        },
+        selectEmployeeForSeat: function(employee) {
+            this.$emit('selectEmployeeForSeat', employee);
         }
     }
 }
