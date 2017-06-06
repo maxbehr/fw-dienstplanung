@@ -57,11 +57,17 @@ export default {
                 });
             }, response => { });
         },
-        toggleEmployeeList: function(event) {
+        toggleEmployeeList: function(customClickEvent) {
+            console.log('clicked seat', customClickEvent);
+            let event = customClickEvent.event;
+
             this.employeeListOptions.isEmployeeListOpen = !this.employeeListOptions.isEmployeeListOpen;
-            if(event) {
+            if(event && this.employeeListOptions.isEmployeeListOpen) {
                 let pos = { top: event.target.offsetTop, left: event.target.offsetLeft };
                 this.employeeListOptions.position = pos;
+                this.employeeListOptions.employees = this.employeeListOptions.employees.filter(employee => {
+                    return employee.license[customClickEvent.vehicle] !== undefined;
+                });
             }
         },
         selectEmployeeForSeat: function(employee) {

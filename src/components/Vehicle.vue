@@ -6,7 +6,7 @@
         <ul class="seats">
             <li class="seat-bag" v-for="seat in seats">
                 <span v-text="seat.label"></span>
-                <span class="employee" v-on:click="toggleEmployeeList">Mitarbeiter</span>
+                <span class="employee" v-on:click="toggleEmployeeList(seat)">Mitarbeiter</span>
             </li>
         </ul>
     </div>
@@ -29,8 +29,8 @@ export default {
             var self = this;
 
         },
-        toggleEmployeeList: function(event) {
-            this.$emit('toggleEmployeeList', event);
+        toggleEmployeeList: function(seat) {
+            this.$emit('toggleEmployeeList', { event: event, vehicle: this.name, seat: seat });
         }
     }
 }
