@@ -1,7 +1,7 @@
 <!-- Template -->
 <template>
     <div id="dienstplanung">
-        <employee-list v-show="employeeListOptions.isEmployeeListOpen" v-bind:options="employeeListOptions"></employee-list>
+        <employee-list v-show="employeeListOptions.isEmployeeListOpen" v-bind:options="employeeListOptions" v-on:selectEmployeeForSeat="selectEmployeeForSeat"></employee-list>
         <h1 v-text="heading"></h1>
 
         <ul>
@@ -63,6 +63,9 @@ export default {
                 let pos = { top: event.target.offsetTop, left: event.target.offsetLeft };
                 this.employeeListOptions.position = pos;
             }
+        },
+        selectEmployeeForSeat: function(employee) {
+            console.log('event', employee);
         }
     },
     mounted: function () {
