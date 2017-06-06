@@ -1,7 +1,7 @@
 <!-- Template -->
 <template>
     <div id="dienstplanung">
-        <employee-list v-show="employeeListOptions.isEmployeeListOpen" v-bind:options="employeeListOptions" v-on:selectEmployeeForSeat="selectEmployeeForSeat"></employee-list>
+        <employee-list v-show="isEmployeeListOpen" v-bind:employees="filteredEmployees" v-on:selectEmployeeForSeat="selectEmployeeForSeat"></employee-list>
         <h1 v-text="heading"></h1>
 
         <ul>
@@ -27,17 +27,15 @@ export default {
     data: function(){
         return {
             heading: 'Feuerwehr Dienstplanung',
-            employeeListOptions: {
-                isEmployeeListOpen: true,
-                position: ''
-            }
+            isEmployeeListOpen: false,
+            filteredEmployees: []
         }
     },
     watch: {
-      'employeeListOptions.isEmployeeListOpen': function(changes) {
+      isEmployeeListOpen: function(changes) {
         if(changes) {
-            let offset = 20;
-            $('div#employee-list').css({'top': this.employeeListOptions.position.top+offset, 'left': this.employeeListOptions.position.left });
+            // let offset = 20;
+            // $('div#employee-list').css({'top': this.employeeListOptions.position.top+offset, 'left': this.employeeListOptions.position.left });
         }
       }
     },
@@ -45,16 +43,15 @@ export default {
         init: function() {
             this.$store.dispatch('LOAD_CONFIG');
         },
-        toggleEmployeeList: function(customClickEvent) {
-            console.log('clicked seat', customClickEvent);
-            let event = customClickEvent.event;
-
-            this.employeeListOptions.isEmployeeListOpen = !this.employeeListOptions.isEmployeeListOpen;
-            if(event && this.employeeListOptions.isEmployeeListOpen) {
-                let pos = { top: event.target.offsetTop, left: event.target.offsetLeft };
-                this.employeeListOptions.position = pos;
-                this.employeeListOptions.employees = this.employeeListOptions.employees.filter(employee => {
-                    return employee.license[customClickEvent.vehicle] !== undefined;
+        toggleEmployeeList: function() {
+            this.isEmployeeListOpen = !this.isEmployeeListOpen;
+            if(this.isEmployeeListOpen) {
+                // let pos = { top: event.target.offsetTop, left: event.target.offsetLeft };
+                // this.position = pos;
+                let vehicle = this.$store.state.lastClickedSeat.vehicle;
+                console.log('vehicle', vehicle);
+                this.filteredEmployees = this.employees.filter(employee => {
+                    return employee.license[vehicle] !== undefined;
                 });
             }
         },

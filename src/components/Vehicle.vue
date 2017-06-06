@@ -30,7 +30,8 @@ export default {
 
         },
         toggleEmployeeList: function(seat) {
-            this.$emit('toggleEmployeeList', { event: event, vehicle: this.name, seat: seat });
+            this.$store.commit('SET_LAST_CLICKED_SEAT', { event: event, vehicle: this.name, seat: seat })
+            this.$emit('toggleEmployeeList');
         }
     }
 }

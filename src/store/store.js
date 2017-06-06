@@ -8,7 +8,8 @@ const store = new Vuex.Store({
 	state: {
 		employees: '',
 		vehicles: '',
-		seats: ''
+		seats: '',
+		lastClickedSeat: ''
 	},
 	actions: {
 		LOAD_CONFIG: function ({ commit }) {
@@ -33,6 +34,9 @@ const store = new Vuex.Store({
             state.vehicles.forEach(vehicle => {
                 vehicle.seats = vehicle.seats.map(seat => ({ id: seat, label: state.seats[seat], employee: null }) );
             });
+		},
+		SET_LAST_CLICKED_SEAT: (state, payload) => {
+			state.lastClickedSeat = payload;
 		}
 	},
 	getters: {

@@ -19,15 +19,11 @@ export default {
         }
     },
     props: [
-        'options'
+        'employees'
     ],
     computed: {
-        employees: function() {
-            return this.$store.state.employees;
-        },
         filteredEmployees: function() {
-            return this.options &&
-                this.employees &&
+            return this.employees &&
                 this.employees.filter(e => {
                     let fn = e.firstName.toLowerCase();
                     let ln = e.lastName.toLowerCase();
