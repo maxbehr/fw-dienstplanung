@@ -18,6 +18,7 @@
 
 <!-- Script -->
 <script>
+import axios from 'axios';
 import Vehicle from './Vehicle.vue';
 import EmployeeList from './EmployeeList.vue';
 
@@ -45,21 +46,26 @@ export default {
     },
     methods: {
         init: function() {
+            let self = this;
             let uri = 'src/config/config.json';
-            this.$http.get(uri).then(response => {
-                let config = JSON.parse(response.bodyText);
+            axios.get(uri)
+                .then(function (response) {
+                    let config = response.data;
 
-                // get body data
-                this.employees = config.employees;
-                this.vehicles = config.vehicles;
+                    // get body data
+                    self.employees = config.employees;
+                    self.vehicles = config.vehicles;
 
-                this.employeeListOptions.employees = this.employees;
+                    self.employeeListOptions.employees = self.employees;
 
-                //  Map seats
-                this.vehicles.forEach(vehicle => {
-                    vehicle.seats = vehicle.seats.map(seat => ({ id: seat, label: config.seats[seat] }) );
+                    //  Map seats
+                    self.vehicles.forEach(vehicle => {
+                        vehicle.seats = vehicle.seats.map(seat => ({ id: seat, label: config.seats[seat] }) );
+                    });
+                })
+                .catch(function (error) {
+
                 });
-            }, response => { });
         },
         toggleEmployeeList: function(customClickEvent) {
             console.log('clicked seat', customClickEvent);
