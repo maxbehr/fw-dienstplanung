@@ -39,7 +39,7 @@ export default {
 
         },
         selectEmployeeForSeat: function(employee) {
-            this.$emit('selectEmployeeForSeat', employee);
+            this.$store.state.lastClickedSeat.seat.employee = employee;
         }
     }
 }

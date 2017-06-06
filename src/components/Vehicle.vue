@@ -6,7 +6,7 @@
         <ul class="seats">
             <li class="seat-bag" v-for="seat in seats">
                 <span v-text="seat.label"></span>
-                <span class="employee" v-on:click="toggleEmployeeList(seat)">Mitarbeiter</span>
+                <span class="employee" v-on:click="toggleEmployeeList(seat)" v-text="seat.employee && seat.employee.firstName || 'Mitarbeiter'">Mitarbeiter</span>
             </li>
         </ul>
     </div>

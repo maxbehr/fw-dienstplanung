@@ -1,7 +1,7 @@
 <!-- Template -->
 <template>
     <div id="dienstplanung">
-        <employee-list v-show="isEmployeeListOpen" v-bind:employees="filteredEmployees" v-on:selectEmployeeForSeat="selectEmployeeForSeat"></employee-list>
+        <employee-list v-show="isEmployeeListOpen" v-bind:employees="filteredEmployees"></employee-list>
         <h1 v-text="heading"></h1>
 
         <ul>
@@ -54,9 +54,6 @@ export default {
                     return employee.license[vehicle] !== undefined;
                 });
             }
-        },
-        selectEmployeeForSeat: function(employee) {
-            console.log('event', employee);
         }
     },
     computed: {
