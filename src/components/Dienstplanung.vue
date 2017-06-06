@@ -84,9 +84,10 @@ export default {
             console.log('event', employee);
         }
     },
+    created: function() {
+        this.init();
+    },
     mounted: function () {
-        let self = this;
-        self.init();
     },
     components: {
         'vehicle': Vehicle,
