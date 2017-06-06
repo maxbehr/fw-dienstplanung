@@ -27,11 +27,8 @@ export default {
     data: function(){
         return {
             heading: 'Feuerwehr Dienstplanung',
-            employees: '',
-            vehicles: '',
             employeeListOptions: {
                 isEmployeeListOpen: true,
-                employees: [],
                 position: ''
             }
         }
@@ -46,26 +43,7 @@ export default {
     },
     methods: {
         init: function() {
-            let self = this;
-            let uri = 'src/config/config.json';
-            axios.get(uri)
-                .then(function (response) {
-                    let config = response.data;
-
-                    // get body data
-                    self.employees = config.employees;
-                    self.vehicles = config.vehicles;
-
-                    self.employeeListOptions.employees = self.employees;
-
-                    //  Map seats
-                    self.vehicles.forEach(vehicle => {
-                        vehicle.seats = vehicle.seats.map(seat => ({ id: seat, label: config.seats[seat] }) );
-                    });
-                })
-                .catch(function (error) {
-
-                });
+            this.$store.dispatch('LOAD_CONFIG');
         },
         toggleEmployeeList: function(customClickEvent) {
             console.log('clicked seat', customClickEvent);
@@ -82,6 +60,14 @@ export default {
         },
         selectEmployeeForSeat: function(employee) {
             console.log('event', employee);
+        }
+    },
+    computed: {
+        employees: function() {
+            return this.$store.state.employees;
+        },
+        vehicles: function() {
+            return this.$store.state.vehicles;
         }
     },
     created: function() {

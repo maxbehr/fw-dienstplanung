@@ -10,6 +10,7 @@
 
 <!-- Script -->
 <script>
+
 export default {
     name: 'employeeList',
     data: function(){
@@ -21,10 +22,13 @@ export default {
         'options'
     ],
     computed: {
+        employees: function() {
+            return this.$store.state.employees;
+        },
         filteredEmployees: function() {
             return this.options &&
-                this.options.employees &&
-                this.options.employees.filter(e => {
+                this.employees &&
+                this.employees.filter(e => {
                     let fn = e.firstName.toLowerCase();
                     let ln = e.lastName.toLowerCase();
                     let st = this.searchText.toLowerCase();

@@ -10,10 +10,10 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import App from './App.vue';
-
-require('./main.js');
+import store from './store/store.js';
 
 new Vue({
   el: '#app',
+  store,
   render: (h) => h(App)
 })
