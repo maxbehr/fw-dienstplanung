@@ -5,7 +5,11 @@
         <h1 v-text="heading"></h1>
 
         <ul>
-            <li v-if="config" v-for="employee in config.employees" v-text="employee.firstName"></li>
+            <li v-for="employee in employees">
+                <span v-text="employee.firstName"></span>
+                <span v-text="employee.lastName"></span>
+                <span v-text="employee.license.HLF"></span>
+            </li>
         </ul>
 
         <vehicle v-on:toggleEmployeeList="toggleEmployeeList" v-for="vehicle in vehicles" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
