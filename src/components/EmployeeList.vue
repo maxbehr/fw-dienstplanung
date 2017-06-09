@@ -1,15 +1,36 @@
 <!-- Template -->
 <template>
     <div id="employee-list" v-show="isOpen" @click="close">
-
         <div id="wrapper">
-            <input id="employee-search" type="text" v-model="searchText">
-            <ul id="employees">
-                <li @click="selectEmployeeForSeat(employee)" v-for="employee in filteredEmployees" >
-                    <span v-text="employee.firstName"></span>
-                    <span v-if="isAlreadySeated(employee)">x</span>
-                </li>
-            </ul>
+            <input id="employee-search" type="text" v-model="searchText" autofocus>
+
+            <div>
+                <h5>Verfügbar</h5>
+                <ul class="employees">
+                    <li @click="selectEmployeeForSeat(employee)" v-for="employee in availableEmployees" >
+                        <span v-text="employee.firstName"></span>
+                        <span v-if="isAlreadySeated(employee)">x</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Bereits eingeteilt</h5>
+                <ul class="employees">
+                    <li v-for="employee in alreadySeatedEmployees" >
+                        <span v-text="employee.firstName"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Nicht anwesend</h5>
+                <ul class="employees">
+                    <li v-for="employee in notPresentEmployees" >
+                        <span v-text="employee.firstName"></span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -29,15 +50,17 @@ export default {
         'options'
     ],
     computed: {
-        filteredEmployees: function() {
+        availableEmployees: function() {
             return this.employees &&
-                this.employees.filter(e => {
-                    let fn = e.firstName.toLowerCase();
-                    let ln = e.lastName.toLowerCase();
-                    let st = this.searchText.toLowerCase();
-
-                    return fn.includes(st) || ln.includes(st);
-                });
+                this.employees.filter(e => e.isPresent && !this.isAlreadySeated(e)).filter(this.searchFilter);
+        },
+        alreadySeatedEmployees: function() {
+            return this.employees &&
+                this.employees.filter(e => e.isPresent && this.isAlreadySeated(e)).filter(this.searchFilter);
+        },
+        notPresentEmployees: function() {
+            return this.employees &&
+                this.employees.filter(e => !e.isPresent).filter(this.searchFilter);
         },
         isOpen: function() {
             return this.options && this.options.isOpen;
@@ -47,6 +70,13 @@ export default {
         init: function() {
             var self = this;
 
+        },
+        searchFilter: function(e) {
+            let fn = e.firstName.toLowerCase();
+            let ln = e.lastName.toLowerCase();
+            let st = this.searchText.toLowerCase();
+
+            return fn.includes(st) || ln.includes(st);
         },
         selectEmployeeForSeat: function(employee) {
             this.$store.commit('SELECT_EMPLOYEE_FOR_SEAT', { employee: employee })
@@ -85,7 +115,7 @@ export default {
             border-radius: 3px
             box-shadow: 0px 10px 50px rgba(0,0,0,0.2)
 
-            #employees
+            ul.employees
                 list-style-type: none
                 padding: 5px 10px
                 margin: 0
