@@ -31,9 +31,7 @@ export default {
                 options: {
                     isOpen: false,
                 }
-            },
-            filteredEmployees: []
-        }
+            }        }
     },
     watch: {
       isEmployeeListOpen: function(changes) {
@@ -52,17 +50,21 @@ export default {
             if(this.employeeList.options.isOpen) {
                 // let pos = { top: event.target.offsetTop, left: event.target.offsetLeft };
                 // this.position = pos;
-                let vehicle = this.$store.state.lastClickedSeat.vehicle;
-
-                this.filteredEmployees = this.employees.filter(employee => {
-                    return employee.license[vehicle] !== undefined;
-                });
             }
         }
     },
     computed: {
         employees: function() {
             return this.$store.state.employees;
+        },
+        filteredEmployees: function() {
+            let vehicle = this.$store.state.lastClickedSeat.vehicle;
+
+            if(this.employees) {
+                return this.employees.filter(employee => {
+                    return employee.license[vehicle] !== undefined;
+                });
+            }
         },
         vehicles: function() {
             return this.$store.state.vehicles;
