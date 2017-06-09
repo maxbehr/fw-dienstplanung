@@ -46,14 +46,14 @@ export default {
         margin: 0
 
     .seats
-        border: 1px solid black
+        border-left: 1px solid rgba(0,0,0,0.1)
         list-style-type: none
         padding: 0
         margin: 0
 
         li
             padding: 5px 10px
-            margin: 10px 0
+            margin: 0
             font-size: 0.8em
 
             span.label
@@ -62,7 +62,7 @@ export default {
                 font-weight: bold
 
             span.employee
-                border: 1px dotted black
+                border-bottom: 1px solid rgba(181,181,181,0.5)
                 padding: 5px 10px
                 color: red
 

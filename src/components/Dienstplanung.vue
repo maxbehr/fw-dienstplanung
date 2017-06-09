@@ -6,7 +6,11 @@
 
         <employee-table v-bind:employees="employees"></employee-table>
 
-        <vehicle @toggleIsOpen="toggleEmployeeList()" v-for="vehicle in vehicles" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
+        <div class="row">
+            <div class="column column-25" v-for="vehicle in vehicles">
+                <vehicle @toggleIsOpen="toggleEmployeeList()" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
+            </div>
+        </div>
     </div>
 </template>
 
