@@ -54,6 +54,9 @@ const store = new Vuex.Store({
 		getEmployees: state => {
 			return state.employees;
 		},
+		getPresentEmployees: state => {
+			return state.employees.filter(e => e.isPresent);
+		},
 		getVehicles: state => {
 			return state.vehicles;
 		}
