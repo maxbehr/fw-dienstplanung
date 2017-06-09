@@ -31,7 +31,7 @@ const store = new Vuex.Store({
 			state.seats = list.seats;
 
             //  Map new properties into employees
-            state.employees.forEach(e => e.isPresent = true );
+            state.employees.forEach(e => Vue.set(e, 'isPresent', true) );
 
             //  Map new objects for seats
             state.vehicles.forEach(vehicle => {
