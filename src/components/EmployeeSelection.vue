@@ -2,7 +2,7 @@
 <template>
     <div id="employee-selection" v-show="isOpen">
         <div id="wrapper">
-            <input id="employee-search" type="text" v-model="searchText" autofocus>
+            <input id="employee-search" type="text" v-model="searchText" placeholder="Mitarbeiter suchen..." autofocus>
 
             <div class="row">
                 <div class="column column-33">
