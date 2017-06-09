@@ -4,7 +4,7 @@
         <div id="wrapper">
             <input id="employee-search" type="text" v-model="searchText" autofocus>
 
-            <employee-list @employeeWasSelected="close" v-bind:options="{ heading: 'Verfügbar', isOpen: true }" v-bind:employees="availableEmployees"></employee-list>
+            <employee-list @employeeWasSelected="close" v-bind:options="{ heading: 'Verfügbar', isOpen: true, limit: 1 }" v-bind:employees="availableEmployees"></employee-list>
             <employee-list @employeeWasSelected="close" v-bind:options="{ heading: 'Eingeteilt', isOpen: true }" v-bind:employees="alreadySeatedEmployees"></employee-list>
             <employee-list v-bind:options="{ heading: 'Nicht anwesend', isOpen: true }" v-bind:employees="notPresentEmployees"></employee-list>
 
@@ -93,12 +93,4 @@ export default {
             border-radius: 3px
             box-shadow: 0px 10px 50px rgba(0,0,0,0.2)
 
-            ul.employees
-                list-style-type: none
-                padding: 5px 10px
-                margin: 0
-
-                li
-                    font-size: 11px
-                    color: black
 </style>
