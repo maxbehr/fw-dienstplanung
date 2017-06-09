@@ -1,7 +1,7 @@
 <!-- Template -->
 <template>
     <div id="employee-list">
-        <h5 v-text="options.heading" @click="toggleIsOpen"></h5>
+        <h5 v-text="heading" @click="toggleIsOpen"></h5>
         <ul class="employees" v-bind:class="{ 'closed': !isOpen }">
             <li @click="preselectEmployee(employee)" v-for="employee in employees" v-bind:class="{ 'preselected': isPreselected(employee) }">
                 <span v-text="employee.firstName"></span>
@@ -26,7 +26,9 @@ export default {
         'options'
     ],
     computed: {
-
+        heading: function(){
+            return this.options.heading + ' ('+ this.employees.length +')';
+        }
     },
     methods: {
         preselectEmployee: function(employee) {
