@@ -1,7 +1,7 @@
 <!-- Template -->
 <template>
     <div id="dienstplanung">
-        <employee-list v-show="isEmployeeListOpen" v-bind:employees="filteredEmployees"></employee-list>
+        <employee-list @close="toggleEmployeeList()" v-bind:options="employeeList.options" v-bind:employees="filteredEmployees"></employee-list>
         <h1 v-text="heading"></h1>
 
         <ul>
@@ -12,7 +12,7 @@
             </li>
         </ul>
 
-        <vehicle v-on:toggleEmployeeList="toggleEmployeeList" v-for="vehicle in vehicles" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
+        <vehicle @toggleIsOpen="toggleEmployeeList()" v-for="vehicle in vehicles" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
     </div>
 </template>
 
@@ -27,7 +27,11 @@ export default {
     data: function(){
         return {
             heading: 'Feuerwehr Dienstplanung',
-            isEmployeeListOpen: false,
+            employeeList: {
+                options: {
+                    isOpen: false,
+                }
+            },
             filteredEmployees: []
         }
     },
@@ -44,12 +48,12 @@ export default {
             this.$store.dispatch('LOAD_CONFIG');
         },
         toggleEmployeeList: function() {
-            this.isEmployeeListOpen = !this.isEmployeeListOpen;
-            if(this.isEmployeeListOpen) {
+            this.employeeList.options.isOpen = !this.employeeList.options.isOpen;
+            if(this.employeeList.options.isOpen) {
                 // let pos = { top: event.target.offsetTop, left: event.target.offsetLeft };
                 // this.position = pos;
                 let vehicle = this.$store.state.lastClickedSeat.vehicle;
-                console.log('vehicle', vehicle);
+
                 this.filteredEmployees = this.employees.filter(employee => {
                     return employee.license[vehicle] !== undefined;
                 });

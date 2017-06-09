@@ -1,9 +1,12 @@
 <!-- Template -->
 <template>
-    <div id="employee-list">
+    <div id="employee-list" v-show="isOpen">
         <input id="employee-search" type="text" v-model="searchText">
         <ul id="employees">
-            <li @click="selectEmployeeForSeat(employee)" v-for="employee in filteredEmployees" v-text="employee.firstName"></li>
+            <li @click="selectEmployeeForSeat(employee)" v-for="employee in filteredEmployees" >
+                <span v-text="employee.firstName"></span>
+                <span v-if="isAlreadySeated(employee)">x</span>
+            </li>
         </ul>
     </div>
 </template>
@@ -19,7 +22,8 @@ export default {
         }
     },
     props: [
-        'employees'
+        'employees',
+        'options'
     ],
     computed: {
         filteredEmployees: function() {
@@ -31,6 +35,9 @@ export default {
 
                     return fn.includes(st) || ln.includes(st);
                 });
+        },
+        isOpen: function() {
+            return this.options && this.options.isOpen;
         }
     },
     methods: {
@@ -40,6 +47,12 @@ export default {
         },
         selectEmployeeForSeat: function(employee) {
             this.$store.state.lastClickedSeat.seat.employee = employee;
+            this.$emit('close');
+        },
+        isAlreadySeated: function(employee) {
+            return this.$store.state.vehicles.some(vehicle => {
+                return vehicle.seats.some(seat => seat.employee === employee);
+            });
         }
     }
 }
