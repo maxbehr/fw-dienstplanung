@@ -54,10 +54,7 @@ export default {
             return this.$store.getters.getEmployees;
         },
         filteredEmployees: function() {
-            let vehicle = this.$store.state.lastClickedSeat.vehicle;
-            return this.$store.getters.getPresentEmployees.filter(employee => {
-                return employee.license[vehicle] !== undefined;
-            });
+            return this.$store.getters.getEmployeesWithLicenseForLastClickedSeat;
         },
         vehicles: function() {
             return this.$store.state.vehicles;
