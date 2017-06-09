@@ -28,7 +28,10 @@ export default {
 
     },
     methods: {
-
+        selectEmployeeForSeat: function(employee) {
+            this.$store.commit('SELECT_EMPLOYEE_FOR_SEAT', { employee: employee })
+            this.$emit('employeeWasSelected');
+        },
     }
 }
 </script>

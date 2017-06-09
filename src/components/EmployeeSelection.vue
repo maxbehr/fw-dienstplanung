@@ -4,8 +4,8 @@
         <div id="wrapper">
             <input id="employee-search" type="text" v-model="searchText" autofocus>
 
-            <employee-list v-bind:options="{ heading: 'Verfügbar' }" v-bind:employees="availableEmployees"></employee-list>
-            <employee-list v-bind:options="{ heading: 'Eingeteilt' }" v-bind:employees="alreadySeatedEmployees"></employee-list>
+            <employee-list @employeeWasSelected="close" v-bind:options="{ heading: 'Verfügbar' }" v-bind:employees="availableEmployees"></employee-list>
+            <employee-list @employeeWasSelected="close" v-bind:options="{ heading: 'Eingeteilt' }" v-bind:employees="alreadySeatedEmployees"></employee-list>
             <employee-list v-bind:options="{ heading: 'Nicht anwesend' }" v-bind:employees="notPresentEmployees"></employee-list>
 
         </div>
@@ -56,10 +56,6 @@ export default {
             let st = this.searchText.toLowerCase();
 
             return fn.includes(st) || ln.includes(st);
-        },
-        selectEmployeeForSeat: function(employee) {
-            this.$store.commit('SELECT_EMPLOYEE_FOR_SEAT', { employee: employee })
-            this.close();
         },
         isAlreadySeated: function(employee) {
             return this.$store.state.vehicles.some(vehicle => {

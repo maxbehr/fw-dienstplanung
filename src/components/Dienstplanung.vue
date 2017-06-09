@@ -1,7 +1,7 @@
 <!-- Template -->
 <template>
     <div id="dienstplanung">
-        <employee-selection @close="toggleEmployeeList()" v-bind:options="employeeList.options" v-bind:employees="filteredEmployees"></employee-selection>
+        <employee-selection @close="toggleEmployeeList()" v-bind:options="employeeSelection.options" v-bind:employees="filteredEmployees"></employee-selection>
         <h1 v-text="heading"></h1>
 
         <employee-table v-bind:employees="employees"></employee-table>
@@ -22,7 +22,7 @@ export default {
     data: function(){
         return {
             heading: 'Feuerwehr Dienstplanung',
-            employeeList: {
+            employeeSelection: {
                 options: {
                     isOpen: false,
                 }
@@ -42,8 +42,8 @@ export default {
             this.$store.dispatch('LOAD_CONFIG');
         },
         toggleEmployeeList: function() {
-            this.employeeList.options.isOpen = !this.employeeList.options.isOpen;
-            if(this.employeeList.options.isOpen) {
+            this.employeeSelection.options.isOpen = !this.employeeSelection.options.isOpen;
+            if(this.employeeSelection.options.isOpen) {
                 // let pos = { top: event.target.offsetTop, left: event.target.offsetLeft };
                 // this.position = pos;
             }
