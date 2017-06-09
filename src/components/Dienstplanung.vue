@@ -79,6 +79,9 @@ export default {
 </script>
 
 <!-- Style -->
-<style scoped>
-
+<style>
+    @font-face { font-family: 'Source Sans Pro'; src: url(../src/font/SourceSansPro-Regular.ttf); }
+    body {
+        font-family: 'Source Sans Pro';
+    }
 </style>
