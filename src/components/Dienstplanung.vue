@@ -5,13 +5,21 @@
         <h1 v-text="heading"></h1>
 
         <div class="tab">
-            <h2>Mitarbeiter</h2>
-            <employee-table v-bind:employees="employees"></employee-table>
+            <h2 @click="isTabEmployeesExpanded = !isTabEmployeesExpanded">
+                Mitarbeiter
+                <i v-if="!isTabEmployeesExpanded" class="fa fa-caret-right" aria-hidden="true"></i>
+                <i v-if="isTabEmployeesExpanded" class="fa fa-caret-down" aria-hidden="true"></i>
+            </h2>
+            <employee-table v-show="isTabEmployeesExpanded" v-bind:employees="employees"></employee-table>
         </div>
 
         <div class="tab">
-            <h2>Fahrzeuge</h2>
-            <div class="row">
+            <h2 @click="isTabVehiclesExpanded = !isTabVehiclesExpanded">
+                Fahrzeuge
+                <i v-if="!isTabVehiclesExpanded" class="fa fa-caret-right" aria-hidden="true"></i>
+                <i v-if="isTabVehiclesExpanded" class="fa fa-caret-down" aria-hidden="true"></i>
+            </h2>
+            <div v-show="isTabVehiclesExpanded" class="row">
                 <div class="column column-25" v-for="vehicle in vehicles">
                     <vehicle @toggleIsOpen="toggleEmployeeList()" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
                 </div>
@@ -36,7 +44,9 @@ export default {
                 options: {
                     isOpen: false,
                 }
-            }
+            },
+            isTabEmployeesExpanded: true,
+            isTabVehiclesExpanded: true
         }
     },
     watch: {
@@ -100,5 +110,9 @@ export default {
     #dienstplanung {
         padding: 20px;
         margin: 0 auto;
+    }
+
+    #dienstplanung h2:hover {
+        cursor: pointer;
     }
 </style>
