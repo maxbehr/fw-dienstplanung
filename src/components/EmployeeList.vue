@@ -1,6 +1,6 @@
 <!-- Template -->
 <template>
-    <div id="employee-list" v-show="isOpen">
+    <div id="employee-list" v-show="isOpen" @click="close">
 
         <div id="wrapper">
             <input id="employee-search" type="text" v-model="searchText">
@@ -50,12 +50,15 @@ export default {
         },
         selectEmployeeForSeat: function(employee) {
             this.$store.commit('SELECT_EMPLOYEE_FOR_SEAT', { employee: employee })
-            this.$emit('close');
+            this.close();
         },
         isAlreadySeated: function(employee) {
             return this.$store.state.vehicles.some(vehicle => {
                 return vehicle.seats.some(seat => seat.employee === employee);
             });
+        },
+        close: function() {
+            this.$emit('close');
         }
     }
 }
