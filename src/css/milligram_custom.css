@@ -1,0 +1,22 @@
+.button,
+button,
+dd,
+dt,
+li { margin-bottom: 0; }
+
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+textarea,
+select {
+	height: 2rem;
+	padding: .6rem 0.5rem;
+}
+
+h1 { font-size: 3rem; font-weight: bold }
+h3 { font-size: 2rem; font-weight: bold }
+h5 { font-size: 1.2rem; font-weight: bold }

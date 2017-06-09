@@ -76,8 +76,14 @@ export default {
 <!-- Style -->
 <style>
     @font-face { font-family: 'Source Sans Pro'; src: url(../src/font/SourceSansPro-Regular.ttf); }
+    @font-face { font-family: 'Roboto-Regular'; src: url(../src/font/Roboto-Regular.ttf); }
+    @font-face { font-family: 'Roboto-Light'; src: url(../src/font/Roboto-Light.ttf); }
+    @font-face { font-family: 'Roboto-Bold'; src: url(../src/font/Roboto-Bold.ttf); }
+    @font-face { font-family: 'Roboto-Black'; src: url(../src/font/Roboto-Black.ttf); }
+    @font-face { font-family: 'Roboto-Black'; src: url(../src/font/Roboto-Black.ttf); }
+
     html, body {
-        font-family: 'Source Sans Pro';
+        font-family: 'Roboto-Light';
         font-size: 14px;
         margin: 0;
     }
