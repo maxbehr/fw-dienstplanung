@@ -63,6 +63,8 @@ export default {
 <!-- Style -->
 <style lang="stylus" scoped>
     #employee-list
+        margin: 10px 0
+
         h5
             margin: 5px 0
             &:hover { cursor: pointer; }
