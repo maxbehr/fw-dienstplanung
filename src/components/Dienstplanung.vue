@@ -50,7 +50,7 @@ export default {
     },
     computed: {
         employees: function() {
-            return this.$store.state.employees;
+            return this.$store.getters.getEmployees;
         },
         filteredEmployees: function() {
             let vehicle = this.$store.state.lastClickedSeat.vehicle;
