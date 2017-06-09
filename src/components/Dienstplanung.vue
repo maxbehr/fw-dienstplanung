@@ -26,7 +26,8 @@ export default {
                 options: {
                     isOpen: false,
                 }
-            }        }
+            }
+        }
     },
     watch: {
       isEmployeeListOpen: function(changes) {
