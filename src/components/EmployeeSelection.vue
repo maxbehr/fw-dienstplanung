@@ -1,6 +1,6 @@
 <!-- Template -->
 <template>
-    <div id="employee-list" v-show="isOpen" @click="close">
+    <div id="employee-selection" v-show="isOpen" @click="close">
         <div id="wrapper">
             <input id="employee-search" type="text" v-model="searchText" autofocus>
 
@@ -39,7 +39,7 @@
 <script>
 
 export default {
-    name: 'employeeList',
+    name: 'employeeSelection',
     data: function(){
         return {
             searchText: ''
@@ -62,6 +62,7 @@ export default {
             return this.employees &&
                 this.employees.filter(e => !e.isPresent).filter(this.searchFilter);
         },
+
         isOpen: function() {
             return this.options && this.options.isOpen;
         }
@@ -96,7 +97,7 @@ export default {
 
 <!-- Style -->
 <style lang="stylus" >
-    #employee-list
+    #employee-selection
         width: 100%
         height: 100%
         background-color: rgba(0,0,0,0.4)

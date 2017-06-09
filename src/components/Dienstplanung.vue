@@ -1,7 +1,7 @@
 <!-- Template -->
 <template>
     <div id="dienstplanung">
-        <employee-list @close="toggleEmployeeList()" v-bind:options="employeeList.options" v-bind:employees="filteredEmployees"></employee-list>
+        <employee-selection @close="toggleEmployeeList()" v-bind:options="employeeList.options" v-bind:employees="filteredEmployees"></employee-selection>
         <h1 v-text="heading"></h1>
 
         <employee-table v-bind:employees="employees"></employee-table>
@@ -14,7 +14,7 @@
 <script>
 import axios from 'axios';
 import Vehicle from './Vehicle.vue';
-import EmployeeList from './EmployeeList.vue';
+import EmployeeSelection from './EmployeeSelection.vue';
 import EmployeeTable from './EmployeeTable.vue';
 
 export default {
@@ -67,7 +67,7 @@ export default {
     },
     components: {
         'vehicle': Vehicle,
-        'employee-list': EmployeeList,
+        'employee-selection': EmployeeSelection,
         'employee-table': EmployeeTable
     }
 }
