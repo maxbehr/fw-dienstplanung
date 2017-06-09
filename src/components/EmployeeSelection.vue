@@ -8,6 +8,14 @@
             <employee-list @employeeWasSelected="close" v-bind:options="{ heading: 'Eingeteilt', isOpen: true }" v-bind:employees="alreadySeatedEmployees"></employee-list>
             <employee-list v-bind:options="{ heading: 'Nicht anwesend', isOpen: true }" v-bind:employees="notPresentEmployees"></employee-list>
 
+            <div class="row">
+                <div class="column column-100 center">
+                    <a class="button button">Ok</a>
+                    <a class="button button-outline">Abbrechen</a>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </template>
@@ -88,9 +96,9 @@ export default {
             top: 10%
             width: 500px
             border: 1px solid rgba(0,0,0,0.5)
-            padding: 5px 10px
+            padding: 15px 10px
             background-color: white
-            border-radius: 3px
+            border-radius: 5px
             box-shadow: 0px 10px 50px rgba(0,0,0,0.2)
 
 </style>

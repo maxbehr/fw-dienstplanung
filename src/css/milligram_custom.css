@@ -13,9 +13,48 @@ input[type='text'],
 input[type='url'],
 textarea,
 select {
-	height: 2rem;
+	height: 3rem;
 	padding: .6rem 0.5rem;
 }
+
+input[type='email']:focus,
+input[type='number']:focus,
+input[type='password']:focus,
+input[type='search']:focus,
+input[type='tel']:focus,
+input[type='text']:focus,
+input[type='url']:focus,
+textarea:focus,
+select:focus {
+	border-color: #c06c84;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-size: 90%;
+}
+
+.button,
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+	background-color: #c06c84;
+	border-color: #c06c84;
+}
+
+.button.button-outline,
+button.button-outline,
+input[type='button'].button-outline,
+input[type='reset'].button-outline,
+input[type='submit'].button-outline {
+	color: #c06c84;
+}
+
+.center { text-align: center; }
 
 h1 { font-size: 3rem; font-weight: bold }
 h3 { font-size: 2rem; font-weight: bold }

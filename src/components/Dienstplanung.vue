@@ -84,7 +84,6 @@ export default {
 
     html, body {
         font-family: 'Roboto-Light';
-        font-size: 14px;
         margin: 0;
     }
 </style>
