@@ -5,6 +5,7 @@
         <ul class="employees" v-bind:class="{ 'closed': !isOpen }">
             <li @click="preselectEmployee(employee)" v-for="employee in employees" v-bind:class="{ 'preselected': isPreselected(employee) }">
                 <span v-text="employee.firstName"></span>
+                <i v-if="isPreselected(employee)" class="fa fa-check" aria-hidden="true"></i>
             </li>
         </ul>
     </div>
