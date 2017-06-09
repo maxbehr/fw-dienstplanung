@@ -4,13 +4,7 @@
         <employee-list @close="toggleEmployeeList()" v-bind:options="employeeList.options" v-bind:employees="filteredEmployees"></employee-list>
         <h1 v-text="heading"></h1>
 
-        <ul>
-            <li v-for="employee in employees">
-                <span v-text="employee.firstName"></span>
-                <span v-text="employee.lastName"></span>
-                <span v-text="employee.license.HLF"></span>
-            </li>
-        </ul>
+        <employee-table v-bind:employees="employees"></employee-table>
 
         <vehicle @toggleIsOpen="toggleEmployeeList()" v-for="vehicle in vehicles" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
     </div>
@@ -21,6 +15,7 @@
 import axios from 'axios';
 import Vehicle from './Vehicle.vue';
 import EmployeeList from './EmployeeList.vue';
+import EmployeeTable from './EmployeeTable.vue';
 
 export default {
     name: 'dienstplanung',
@@ -77,7 +72,8 @@ export default {
     },
     components: {
         'vehicle': Vehicle,
-        'employee-list': EmployeeList
+        'employee-list': EmployeeList,
+        'employee-table': EmployeeTable
     }
 }
 </script>
