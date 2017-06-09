@@ -40,13 +40,12 @@ export default {
 <style lang="stylus" scoped>
     #employee-list
 
-        #employees
+        .employees
             list-style-type: none
             padding: 5px 10px
 
-            li {
+            li
                 font-size: 0.9em;
                 &:hover { cursor: pointer }
                 &.not-present { opacity: .2; }
-            }
 </style>
