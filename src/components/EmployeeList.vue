@@ -44,10 +44,8 @@ export default {
                     this.removeEmployeeFromPreselection(employee);
                 }
             }
-        },
-        selectEmployeeForSeat: function(employee) {
-            this.$store.commit('SELECT_EMPLOYEE_FOR_SEAT', { employees: preselected })
-            this.$emit('employeeWasSelected');
+
+            this.$emit('list-selection', { preselection: this.preselected });
         },
         toggleIsOpen: function() {
             this.isOpen = !this.isOpen;

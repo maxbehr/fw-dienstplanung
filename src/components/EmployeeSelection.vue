@@ -1,17 +1,17 @@
 <!-- Template -->
 <template>
-    <div id="employee-selection" v-show="isOpen" @click="close">
+    <div id="employee-selection" v-show="isOpen">
         <div id="wrapper">
             <input id="employee-search" type="text" v-model="searchText" autofocus>
 
-            <employee-list @employeeWasSelected="close" v-bind:options="{ heading: 'Verfügbar', isOpen: true, limit: 1 }" v-bind:employees="availableEmployees"></employee-list>
-            <employee-list @employeeWasSelected="close" v-bind:options="{ heading: 'Eingeteilt', isOpen: true }" v-bind:employees="alreadySeatedEmployees"></employee-list>
+            <employee-list @list-selection="setPreselected" v-bind:options="{ heading: 'Verfügbar', isOpen: true, limit: 1 }" v-bind:employees="availableEmployees"></employee-list>
+            <employee-list v-bind:options="{ heading: 'Eingeteilt', isOpen: true }" v-bind:employees="alreadySeatedEmployees"></employee-list>
             <employee-list v-bind:options="{ heading: 'Nicht anwesend', isOpen: true }" v-bind:employees="notPresentEmployees"></employee-list>
 
             <div class="row">
                 <div class="column column-100 center">
-                    <a class="button button">Ok</a>
-                    <a class="button button-outline">Abbrechen</a>
+                    <a class="button button" @click="btnSubmit">Ok</a>
+                    <a class="button button-outline" @click="btnCancel">Abbrechen</a>
                 </div>
             </div>
 
@@ -28,7 +28,8 @@ export default {
     name: 'employeeSelection',
     data: function(){
         return {
-            searchText: ''
+            searchText: '',
+            preselected: []
         }
     },
     props: [
@@ -70,7 +71,15 @@ export default {
                 return vehicle.seats.some(seat => seat.employee === employee);
             });
         },
-        close: function() {
+        setPreselected: function(event) {
+            this.preselected = event.preselection;
+        },
+        btnSubmit: function() {
+            console.log('btnSubmit', this.preselected[0]);
+            this.$store.commit('SELECT_EMPLOYEE_FOR_SEAT', { employee: this.preselected[0] })
+            this.$emit('close');
+        },
+        btnCancel: function() {
             this.$emit('close');
         }
     },

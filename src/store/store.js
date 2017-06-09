@@ -46,7 +46,6 @@ const store = new Vuex.Store({
 		},
 		TOGGLE_PRESENT: (state, payload) => {
 			let employee = state.employees.filter(e => e === payload.employee)[0];
-			console.log('found ' + employee.firstName);
 			employee.isPresent = !employee.isPresent;
 		}
 	},
