@@ -4,11 +4,17 @@
         <employee-selection @close="toggleEmployeeList()" v-bind:options="employeeSelection.options" v-bind:employees="filteredEmployees"></employee-selection>
         <h1 v-text="heading"></h1>
 
-        <employee-table v-bind:employees="employees"></employee-table>
+        <div class="tab">
+            <h2>Mitarbeiter</h2>
+            <employee-table v-bind:employees="employees"></employee-table>
+        </div>
 
-        <div class="row">
-            <div class="column column-25" v-for="vehicle in vehicles">
-                <vehicle @toggleIsOpen="toggleEmployeeList()" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
+        <div class="tab">
+            <h2>Fahrzeuge</h2>
+            <div class="row">
+                <div class="column column-25" v-for="vehicle in vehicles">
+                    <vehicle @toggleIsOpen="toggleEmployeeList()" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
+                </div>
             </div>
         </div>
     </div>
@@ -89,5 +95,10 @@ export default {
     html, body {
         font-family: 'Roboto-Light';
         margin: 0;
+    }
+
+    #dienstplanung {
+        padding: 20px;
+        margin: 0 auto;
     }
 </style>

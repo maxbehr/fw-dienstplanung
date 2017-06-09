@@ -102,8 +102,6 @@ export default {
     #employee-selection
         width: 100%
         height: 100%
-        background-color: rgba(0,0,0,0.4)
-        position: absolute
 
         #wrapper
             position: absolute
@@ -112,10 +110,10 @@ export default {
             right: 0
             top: 10%
             width: 500px
-            border: 1px solid rgba(0,0,0,0.5)
+            border: 1px solid rgba(0,0,0,0.2)
             padding: 15px 10px
             background-color: white
             border-radius: 5px
-            box-shadow: 0px 10px 50px rgba(0,0,0,0.2)
+            box-shadow: 0px 10px 50px rgba(0,0,0,0.5)
 
 </style>
