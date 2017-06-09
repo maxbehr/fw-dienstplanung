@@ -1,13 +1,16 @@
 <!-- Template -->
 <template>
     <div id="employee-list" v-show="isOpen">
-        <input id="employee-search" type="text" v-model="searchText">
-        <ul id="employees">
-            <li @click="selectEmployeeForSeat(employee)" v-for="employee in filteredEmployees" >
-                <span v-text="employee.firstName"></span>
-                <span v-if="isAlreadySeated(employee)">x</span>
-            </li>
-        </ul>
+
+        <div id="wrapper">
+            <input id="employee-search" type="text" v-model="searchText">
+            <ul id="employees">
+                <li @click="selectEmployeeForSeat(employee)" v-for="employee in filteredEmployees" >
+                    <span v-text="employee.firstName"></span>
+                    <span v-if="isAlreadySeated(employee)">x</span>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -59,20 +62,32 @@ export default {
 </script>
 
 <!-- Style -->
-<style lang="stylus" scoped>
-#employee-list
-    display: block
-    position: absolute
-    border: 1px solid black
-    padding: 5px 10px
-    background-color: white
+<style lang="stylus" >
+    #employee-list
+        width: 100%
+        height: 100%
+        background-color: rgba(0,0,0,0.4)
+        position: absolute
 
-#employees
-    list-style-type: none
-    padding: 5px 10px
-    margin: 0
+        #wrapper
+            position: absolute
+            margin: 0 auto
+            left: 0
+            right: 0
+            top: 10%
+            width: 500px
+            border: 1px solid rgba(0,0,0,0.5)
+            padding: 5px 10px
+            background-color: white
+            border-radius: 3px
+            box-shadow: 0px 10px 50px rgba(0,0,0,0.2)
 
-    li
-        font-size: 11px
-        color: black
+            #employees
+                list-style-type: none
+                padding: 5px 10px
+                margin: 0
+
+                li
+                    font-size: 11px
+                    color: black
 </style>

@@ -78,7 +78,9 @@ export default {
 <!-- Style -->
 <style>
     @font-face { font-family: 'Source Sans Pro'; src: url(../src/font/SourceSansPro-Regular.ttf); }
-    body {
+    html, body {
         font-family: 'Source Sans Pro';
+        font-size: 14px;
+        margin: 0;
     }
 </style>

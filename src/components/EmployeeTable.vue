@@ -36,5 +36,14 @@ export default {
 
 <!-- Style -->
 <style lang="stylus" scoped>
-    .not-present { color: grey; }
+    #employees {
+        list-style-type: none
+        padding: 5px 10px
+
+        li {
+            font-size: 0.9em;
+            &:hover { cursor: pointer }
+            &.not-present { opacity: .2; }
+        }
+    }
 </style>
