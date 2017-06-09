@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
 	state: {
-		employees: '',
+		employees: [],
 		vehicles: '',
 		seats: '',
 		lastClickedSeat: ''
@@ -44,6 +44,10 @@ const store = new Vuex.Store({
 		SELECT_EMPLOYEE_FOR_SEAT: (state, payload) => {
 			state.lastClickedSeat.seat.employee = payload.employee;
 		},
+		TOGGLE_PRESENT: (state, payload) => {
+			let employee = state.employees.filter(e => e === payload.employee)[0];
+			console.log('found ' + employee.firstName);
+			employee.isPresent = !employee.isPresent;
 		}
 	},
 	getters: {

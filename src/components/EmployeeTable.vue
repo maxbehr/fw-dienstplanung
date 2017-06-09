@@ -2,7 +2,7 @@
 <template>
     <div id="employee-table">
         <ul>
-            <li v-for="employee in employees">
+            <li v-for="employee in employees" @click="togglePresent(employee)" v-bind:class="{ 'not-present': !employee.isPresent }">
                 <span v-text="employee.firstName"></span>
                 <span v-text="employee.lastName"></span>
                 <span v-text="employee.license.HLF"></span>
@@ -27,11 +27,14 @@ export default {
 
     },
     methods: {
+        togglePresent: function(employee) {
+            this.$store.commit('TOGGLE_PRESENT', { employee: employee })
+        }
     }
 }
 </script>
 
 <!-- Style -->
 <style lang="stylus" scoped>
-
+    .not-present { color: grey; }
 </style>
