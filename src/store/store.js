@@ -40,6 +40,10 @@ const store = new Vuex.Store({
 		},
 		SET_LAST_CLICKED_SEAT: (state, payload) => {
 			state.lastClickedSeat = payload;
+		},
+		SELECT_EMPLOYEE_FOR_SEAT: (state, payload) => {
+			state.lastClickedSeat.seat.employee = payload.employee;
+		},
 		}
 	},
 	getters: {

@@ -46,7 +46,7 @@ export default {
 
         },
         selectEmployeeForSeat: function(employee) {
-            this.$store.state.lastClickedSeat.seat.employee = employee;
+            this.$store.commit('SELECT_EMPLOYEE_FOR_SEAT', { employee: employee })
             this.$emit('close');
         },
         isAlreadySeated: function(employee) {
