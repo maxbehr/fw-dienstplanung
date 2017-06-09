@@ -4,39 +4,17 @@
         <div id="wrapper">
             <input id="employee-search" type="text" v-model="searchText" autofocus>
 
-            <div>
-                <h5>Verfügbar</h5>
-                <ul class="employees">
-                    <li @click="selectEmployeeForSeat(employee)" v-for="employee in availableEmployees" >
-                        <span v-text="employee.firstName"></span>
-                        <span v-if="isAlreadySeated(employee)">x</span>
-                    </li>
-                </ul>
-            </div>
+            <employee-list v-bind:options="{ heading: 'Verfügbar' }" v-bind:employees="availableEmployees"></employee-list>
+            <employee-list v-bind:options="{ heading: 'Eingeteilt' }" v-bind:employees="alreadySeatedEmployees"></employee-list>
+            <employee-list v-bind:options="{ heading: 'Nicht anwesend' }" v-bind:employees="notPresentEmployees"></employee-list>
 
-            <div>
-                <h5>Bereits eingeteilt</h5>
-                <ul class="employees">
-                    <li v-for="employee in alreadySeatedEmployees" >
-                        <span v-text="employee.firstName"></span>
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <h5>Nicht anwesend</h5>
-                <ul class="employees">
-                    <li v-for="employee in notPresentEmployees" >
-                        <span v-text="employee.firstName"></span>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
 </template>
 
 <!-- Script -->
 <script>
+import EmployeeList from './EmployeeList.vue';
 
 export default {
     name: 'employeeSelection',
@@ -91,6 +69,9 @@ export default {
         close: function() {
             this.$emit('close');
         }
+    },
+    components: {
+        'employee-list': EmployeeList
     }
 }
 </script>
