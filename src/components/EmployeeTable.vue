@@ -1,7 +1,7 @@
 <!-- Template -->
 <template>
     <div id="employee-table">
-        <ul>
+        <ul id="employees">
             <li v-for="employee in employees" @click="togglePresent(employee)" v-bind:class="{ 'not-present': !employee.isPresent }">
                 <span class="icon"><i class="fa fa-user-o"></i></span>
                 <span v-text="employee.firstName"></span>

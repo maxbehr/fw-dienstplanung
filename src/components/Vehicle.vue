@@ -12,7 +12,7 @@
             <ul v-if="isOpen" class="seats">
                 <li class="seat-bag" v-for="seat in seats">
                     <span class="label" v-text="seat.label"></span>
-                    <span class="employee" v-on:click="toggleEmployeeList(seat)" v-text="seat.employee && seat.employee.firstName || '...'"></span>
+                    <span class="employee" v-on:click="toggleEmployeeList(seat)" v-text="getEmployeeName(seat)"></span>
                     <span class="remove" v-if="seat.employee !== null" v-on:click="removeEmployee(seat)"><i class="fa fa-times"></i></span>
                 </li>
             </ul>
@@ -46,6 +46,9 @@ export default {
         removeEmployee: function(seat) {
             console.log('seatc', seat);
             this.$store.commit('REMOVE_EMPLOYEE_FROM_SEAT', { event: event, seat: seat })
+        },
+        getEmployeeName: function(seat) {
+            return seat.employee ? seat.employee.firstName + ' ' + seat.employee.lastName : '...';
         }
     },
     computed: {
