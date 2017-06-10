@@ -18,7 +18,7 @@ export default {
     data: function() {
         return {
             isOpen: this.options.isOpen,
-            limit: this.options.limit || undefined,
+            limit: ('limit' in this.options) ? this.options.limit : 1,
             preselected: []
         }
     },
@@ -33,22 +33,24 @@ export default {
     },
     methods: {
         preselectEmployee: function(employee) {
-            if(this.preselected.filter(e => e === employee).length > 0) {
-                this.removeEmployeeFromPreselection(employee);
-            } else {
-                //  Push employee to preselected when we haven't reached the limit yet
-                if(this.limit === undefined || this.limit < 0 || this.preselected.length < this.limit) {
-                    this.preselected.push(employee);
-                } else if(this.limit === 1 && this.preselected.length === 1){
-                    this.preselected = [];
-                    this.preselected.push(employee);
-                } else {
-                    //  Remove employee from preselection
+            if(this.limit > 0) {
+                if(this.isPreselected(employee)) {
                     this.removeEmployeeFromPreselection(employee);
+                } else {
+                    //  Push employee to preselected when we haven't reached the limit yet
+                    if(this.preselected.length < this.limit) {
+                        this.preselected.push(employee);
+                    } else if(this.limit === 1 && this.preselected.length === 1){
+                        this.preselected = [];
+                        this.preselected.push(employee);
+                    } else {
+                        //  Remove employee from preselection
+                        this.removeEmployeeFromPreselection(employee);
+                    }
                 }
-            }
 
-            this.$emit('list-selection', { preselection: this.preselected });
+                this.$emit('list-selection', { preselection: this.preselected });
+            }
         },
         toggleIsOpen: function() {
             this.isOpen = !this.isOpen;
