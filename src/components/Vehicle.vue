@@ -1,12 +1,18 @@
 <!-- Template -->
 <template>
     <div id="vehicle">
-        <h3 v-text="name"></h3>
+        <h3>
+            <span class="name" v-text="name"></span>
+            <span>
+                <i v-if="isFullySeated" class="fa fa-check"></i>
+                <i v-if="!isFullySeated" class="fa fa-times"></i>
+            </span>
+        </h3>
 
         <ul class="seats">
             <li class="seat-bag" v-for="seat in seats">
                 <span class="label" v-text="seat.label"></span>
-                <span class="employee" v-on:click="toggleEmployeeList(seat)" v-text="seat.employee && seat.employee.firstName || 'Mitarbeiter'">Mitarbeiter</span>
+                <span class="employee" v-on:click="toggleEmployeeList(seat)" v-text="seat.employee && seat.employee.firstName || '...'"></span>
             </li>
         </ul>
     </div>
@@ -33,6 +39,11 @@ export default {
             this.$store.commit('SET_LAST_CLICKED_SEAT', { event: event, vehicle: this.name, seat: seat })
             this.$emit('toggleIsOpen');
         }
+    },
+    computed: {
+        isFullySeated: function() {
+            return this.seats.every(s => s.employee !== null);
+        }
     }
 }
 </script>
@@ -44,6 +55,12 @@ export default {
 
     h3
         margin: 0
+
+        span.name
+            margin-right: 10px
+
+        .fa-check { color: green }
+        .fa-times { color: #c06c84 }
 
     .seats
         border-left: 1px solid rgba(0,0,0,0.1)
@@ -64,7 +81,10 @@ export default {
             span.employee
                 border-bottom: 1px solid rgba(181,181,181,0.5)
                 padding: 5px 10px
-                color: red
+                color: #c06c84
+                min-width: 100px
+                display: inline-block
+                text-align: center
 
                 &:hover
                     cursor: pointer

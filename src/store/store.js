@@ -59,6 +59,9 @@ const store = new Vuex.Store({
 		getVehicles: state => {
 			return state.vehicles;
 		},
+		getLastClickedSeat: state => {
+			return state.lastClickedSeat;
+		},
 		getEmployeesWithLicenseForLastClickedSeat: (state, getters) => {
             let vehicle = state.lastClickedSeat.vehicle;
             let clickedSeat = state.lastClickedSeat.seat;
