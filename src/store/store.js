@@ -61,7 +61,12 @@ const store = new Vuex.Store({
 		},
 		getEmployeesWithLicenseForLastClickedSeat: (state, getters) => {
             let vehicle = state.lastClickedSeat.vehicle;
-            return getters.getEmployees.filter(e => e.license[vehicle] !== undefined );
+            let clickedSeat = state.lastClickedSeat.seat;
+            return getters.getEmployees.filter(e => {
+            	if(e.license[vehicle]) {
+            		return e.license[vehicle].some(license => license === clickedSeat.id);
+            	}
+            });
 		}
 	}
 })
