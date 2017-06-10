@@ -2,6 +2,8 @@
 <template>
     <div id="employee-selection" v-show="isOpen">
         <div id="wrapper">
+            <p>Folgende Mitarbeiter sind berechtigt, auf dem <span class="bold hint" v-text="vehicleLabel"></span> als <span class="bold hint" v-text="seatLabel"></span> zu fahren</p>
+
             <input id="employee-search" type="text" v-model="searchText" placeholder="Mitarbeiter suchen..." autofocus>
 
             <div class="row">
@@ -57,7 +59,20 @@ export default {
             return this.employees &&
                 this.employees.filter(e => !e.isPresent).filter(this.searchFilter);
         },
-
+        seatLabel: function() {
+            if(this.$store.getters.getLastClickedSeat !== undefined && this.$store.getters.getLastClickedSeat !== '') {
+                return this.$store.getters.getLastClickedSeat.seat.label;
+            } else {
+                return '';
+            }
+        },
+        vehicleLabel: function() {
+            if(this.$store.getters.getLastClickedSeat !== undefined && this.$store.getters.getLastClickedSeat !== '') {
+                return this.$store.getters.getLastClickedSeat.vehicle;
+            } else {
+                return '';
+            }
+        },
         isOpen: function() {
             return this.options && this.options.isOpen;
         }
@@ -116,5 +131,11 @@ export default {
             background-color: white
             border-radius: 5px
             box-shadow: 0px 10px 50px rgba(0,0,0,0.5)
+
+            p
+                font-size: 1.4rem
+
+            .hint
+                color: #c06c84
 
 </style>

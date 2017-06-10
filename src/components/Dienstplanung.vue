@@ -115,4 +115,7 @@ export default {
     #dienstplanung h2:hover {
         cursor: pointer;
     }
+    #dienstplanung .bold {
+        font-weight: bold;
+    }
 </style>
