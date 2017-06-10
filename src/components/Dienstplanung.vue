@@ -4,24 +4,26 @@
         <employee-selection @close="toggleEmployeeList()" v-bind:options="employeeSelection.options" v-bind:employees="filteredEmployees"></employee-selection>
         <h1 v-text="heading"></h1>
 
-        <div class="tab">
-            <h2 @click="isTabEmployeesExpanded = !isTabEmployeesExpanded">
-                Mitarbeiter
-                <i v-if="!isTabEmployeesExpanded" class="fa fa-caret-right" aria-hidden="true"></i>
-                <i v-if="isTabEmployeesExpanded" class="fa fa-caret-down" aria-hidden="true"></i>
-            </h2>
-            <employee-table v-show="isTabEmployeesExpanded" v-bind:employees="employees"></employee-table>
-        </div>
+        <div class="row">
+            <div class="column column-25">
+                <h2 @click="isTabEmployeesExpanded = !isTabEmployeesExpanded">
+                    Mitarbeiter
+                    <i v-if="!isTabEmployeesExpanded" class="fa fa-caret-right" aria-hidden="true"></i>
+                    <i v-if="isTabEmployeesExpanded" class="fa fa-caret-down" aria-hidden="true"></i>
+                </h2>
+                <employee-table v-show="isTabEmployeesExpanded" v-bind:employees="employees"></employee-table>
+            </div>
 
-        <div class="tab">
-            <h2 @click="isTabVehiclesExpanded = !isTabVehiclesExpanded">
-                Fahrzeuge
-                <i v-if="!isTabVehiclesExpanded" class="fa fa-caret-right" aria-hidden="true"></i>
-                <i v-if="isTabVehiclesExpanded" class="fa fa-caret-down" aria-hidden="true"></i>
-            </h2>
-            <div v-show="isTabVehiclesExpanded" class="row">
-                <div class="column column-25" v-for="vehicle in vehicles">
-                    <vehicle @toggleIsOpen="toggleEmployeeList()" v-bind:name="vehicle.name" v-bind:seats="vehicle.seats"></vehicle>
+            <div class="column column-75">
+                <h2 @click="isTabVehiclesExpanded = !isTabVehiclesExpanded">
+                    Fahrzeuge
+                    <i v-if="!isTabVehiclesExpanded" class="fa fa-caret-right" aria-hidden="true"></i>
+                    <i v-if="isTabVehiclesExpanded" class="fa fa-caret-down" aria-hidden="true"></i>
+                </h2>
+                <div v-show="isTabVehiclesExpanded" class="row">
+                    <div class="column column-25" v-for="vehicle in vehicles">
+                        <vehicle @toggleIsOpen="toggleEmployeeList()" v-bind:options="{ name: vehicle.name, isOpen: true }" v-bind:seats="vehicle.seats"></vehicle>
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,7 +117,19 @@ export default {
     #dienstplanung h2:hover {
         cursor: pointer;
     }
+
     #dienstplanung .bold {
         font-weight: bold;
     }
+
+    #dienstplanung .red {
+        color: #c06c84;
+    }
+
+    #dienstplanung .green {
+        color: #c06c84;
+    }
+
+    .fade-enter-active, .fade-leave-active { transition: opacity .2s }
+    .fade-enter, .fade-leave-to { opacity: 0 }
 </style>

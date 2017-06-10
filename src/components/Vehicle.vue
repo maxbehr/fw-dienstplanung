@@ -1,20 +1,22 @@
 <!-- Template -->
 <template>
     <div id="vehicle">
-        <h3>
+        <h3 @click="isOpen = !isOpen">
             <span class="name" v-text="name"></span>
             <span>
                 <i v-if="isFullySeated" class="fa fa-check"></i>
-                <i v-if="!isFullySeated" class="fa fa-times"></i>
             </span>
         </h3>
 
-        <ul class="seats">
-            <li class="seat-bag" v-for="seat in seats">
-                <span class="label" v-text="seat.label"></span>
-                <span class="employee" v-on:click="toggleEmployeeList(seat)" v-text="seat.employee && seat.employee.firstName || '...'"></span>
-            </li>
-        </ul>
+        <transition name="fade">
+            <ul v-if="isOpen" class="seats">
+                <li class="seat-bag" v-for="seat in seats">
+                    <span class="label" v-text="seat.label"></span>
+                    <span class="employee" v-on:click="toggleEmployeeList(seat)" v-text="seat.employee && seat.employee.firstName || '...'"></span>
+                    <span class="remove" v-if="seat.employee !== null" v-on:click="removeEmployee(seat)"><i class="fa fa-times"></i></span>
+                </li>
+            </ul>
+        </transition>
     </div>
 </template>
 
@@ -24,10 +26,12 @@ export default {
     name: 'vehicle',
     data: function(){
         return {
+            name: this.options.name,
+            isOpen: this.options.isOpen,
         }
     },
     props: [
-        'name',
+        'options',
         'seats'
     ],
     methods: {
@@ -38,6 +42,10 @@ export default {
         toggleEmployeeList: function(seat) {
             this.$store.commit('SET_LAST_CLICKED_SEAT', { event: event, vehicle: this.name, seat: seat })
             this.$emit('toggleIsOpen');
+        },
+        removeEmployee: function(seat) {
+            console.log('seatc', seat);
+            this.$store.commit('REMOVE_EMPLOYEE_FROM_SEAT', { event: event, seat: seat })
         }
     },
     computed: {
@@ -51,22 +59,25 @@ export default {
 <!-- Style -->
 <style lang="stylus" scoped>
 #vehicle
-    padding: 5px 10px
+    padding: 15px 10px
 
     h3
         margin: 0
+        padding: 5px 10px
+
+        &:hover { cursor: pointer }
 
         span.name
             margin-right: 10px
 
         .fa-check { color: green }
-        .fa-times { color: #c06c84 }
 
-    .seats
-        border-left: 1px solid rgba(0,0,0,0.1)
+    ul.seats
         list-style-type: none
-        padding: 0
+        padding: 15px 5px
         margin: 0
+        background-color: rgba(123,123,123,0.05)
+        border-radius: 5px
 
         li
             padding: 5px 10px
@@ -86,6 +97,6 @@ export default {
                 display: inline-block
                 text-align: center
 
-                &:hover
-                    cursor: pointer
+            span.employee:hover, span.remove:hover
+                cursor: pointer
 </style>
