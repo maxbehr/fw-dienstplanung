@@ -104,6 +104,7 @@ export default {
         height: 100%
 
         #wrapper
+            z-index: 1000
             position: absolute
             margin: 0 auto
             left: 0
