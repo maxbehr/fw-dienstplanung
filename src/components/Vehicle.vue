@@ -69,7 +69,7 @@ export default {
         seatsAmountString: function() {
             let allSeatedSeats = this.seats.filter(s => s.employee !== null).length;
             let allActiveSeats = this.seats.filter(s => s.isActive).length;
-            return `${allSeatedSeats}/${allActiveSeats}`;
+            return `${allSeatedSeats} / ${allActiveSeats}`;
         }
     }
 }
