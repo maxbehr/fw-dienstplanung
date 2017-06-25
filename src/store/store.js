@@ -7,8 +7,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 	state: {
 		employees: [],
-		vehicles: '',
-		seats: '',
+		vehicles: [],
+		seats: [],
 		lastClickedSeat: ''
 	},
 	actions: {
