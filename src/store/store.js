@@ -35,7 +35,7 @@ const store = new Vuex.Store({
 
             //  Map new objects for seats
             state.vehicles.forEach(vehicle => {
-                vehicle.seats = vehicle.seats.map(seat => ({ id: seat, label: state.seats[seat], employee: null }) );
+                vehicle.seats = vehicle.seats.map(seat => ({ id: seat, label: state.seats[seat], employee: null, isActive: true }) );
             });
 		},
 		SET_LAST_CLICKED_SEAT: (state, payload) => {
@@ -44,9 +44,14 @@ const store = new Vuex.Store({
 		SELECT_EMPLOYEE_FOR_SEAT: (state, payload) => {
 			state.lastClickedSeat.seat.employee = payload.employee;
 		},
-		TOGGLE_PRESENT: (state, payload) => {
-			let employee = state.employees.filter(e => e === payload.employee)[0];
-			employee.isPresent = !employee.isPresent;
+        TOGGLE_PRESENT: (state, payload) => {
+            let employee = state.employees.filter(e => e === payload.employee)[0];
+            employee.isPresent = !employee.isPresent;
+        },
+		TOGGLE_SEAT_ACTIVE: (state, payload) => {
+			let seat = payload.seat;
+			seat.isActive = !seat.isActive;
+		}
 		}
 	},
 	getters: {

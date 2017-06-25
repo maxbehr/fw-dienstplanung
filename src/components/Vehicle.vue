@@ -10,9 +10,13 @@
 
         <transition name="fade">
             <ul v-if="isOpen" class="seats">
-                <li class="seat-bag" v-for="seat in seats">
-                    <span class="label" v-text="seat.label"></span>
-                    <span class="employee" v-on:click="toggleEmployeeList(seat)" v-text="getEmployeeName(seat)"></span>
+                <li class="seat-bag" v-bind:class="{ 'not-active': !seat.isActive }" v-for="seat in seats">
+                    <span class="label" @click="toggleActive(seat)" v-text="seat.label"></span>
+
+                    <template v-if="seat.isActive">
+                        <span class="employee" v-on:click="toggleEmployeeList(seat)" v-text="getEmployeeName(seat)"></span>
+                    </template>
+
                     <span class="remove" v-if="seat.employee !== null" v-on:click="removeEmployee(seat)"><i class="fa fa-times"></i></span>
                 </li>
             </ul>
@@ -42,6 +46,10 @@ export default {
         toggleEmployeeList: function(seat) {
             this.$store.commit('SET_LAST_CLICKED_SEAT', { event: event, vehicle: this.name, seat: seat })
             this.$emit('toggleIsOpen');
+        },
+        toggleActive: function(seat) {
+            this.$store.commit('TOGGLE_SEAT_ACTIVE', { event: event, seat: seat })
+            this.$emit('toggleActive');
         },
         removeEmployee: function(seat) {
             console.log('seatc', seat);
@@ -87,14 +95,20 @@ export default {
             margin: 0
             font-size: 0.8em
 
+            &.not-active
+                opacity: 0.3
+
             span.label
                 display: inline-block
                 min-width: 80px
                 font-weight: bold
 
+                &:hover
+                    cursor: pointer
+
             span.employee
                 border-bottom: 1px solid rgba(181,181,181,0.5)
-                padding: 5px 10px
+                // padding: 5px 10px
                 color: #c06c84
                 min-width: 100px
                 display: inline-block
