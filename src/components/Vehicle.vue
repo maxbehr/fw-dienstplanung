@@ -80,7 +80,7 @@ export default {
 <!-- Style -->
 <style lang="stylus" scoped>
 #vehicle
-    padding: 15px 10px
+    padding: 5px 10px
 
     h3
         margin: 0

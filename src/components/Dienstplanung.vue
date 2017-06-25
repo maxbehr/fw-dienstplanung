@@ -20,9 +20,9 @@
                     <i v-if="!isTabVehiclesExpanded" class="fa fa-caret-right" aria-hidden="true"></i>
                     <i v-if="isTabVehiclesExpanded" class="fa fa-caret-down" aria-hidden="true"></i>
                 </h2>
-                <div v-show="isTabVehiclesExpanded" class="row">
-                    <div class="column column-25" v-for="vehicle in vehicles">
-                        <vehicle @toggleIsOpen="toggleEmployeeList()" v-bind:options="{ name: vehicle.name, color: vehicle.color, isOpen: true }" v-bind:seats="vehicle.seats"></vehicle>
+                <div v-show="isTabVehiclesExpanded" class="flex-container">
+                    <div class="col-33" v-for="vehicle in vehicles">
+                        <vehicle @toggleIsOpen="toggleEmployeeList()" v-bind:options="{ name: vehicle.name, color: vehicle.color, isOpen: false }" v-bind:seats="vehicle.seats"></vehicle>
                     </div>
                 </div>
             </div>
@@ -128,6 +128,26 @@ export default {
 
     #dienstplanung .green {
         color: #c06c84;
+    }
+
+    .flex-container {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .col-33 {
+        width: 33%;
     }
 
     .fade-enter-active, .fade-leave-active { transition: opacity .2s }
