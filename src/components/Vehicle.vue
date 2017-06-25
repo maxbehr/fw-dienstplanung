@@ -4,9 +4,7 @@
         <h3 @click="isOpen = !isOpen">
             <span class="color-badge" v-bind:style="{ 'background-color': color }"></span>
             <span class="name" v-text="name"></span>
-            <span class="amount-seats-str">
-                {{ seatsAmountString }}
-            </span>
+            <span v-if="!isFullySeated" class="amount-seats-str" v-text="seatsAmountString"></span>
             <span>
                 <i v-if="isFullySeated" class="fa fa-check"></i>
             </span>
