@@ -22,7 +22,7 @@
                 </h2>
                 <div v-show="isTabVehiclesExpanded" class="row">
                     <div class="column column-25" v-for="vehicle in vehicles">
-                        <vehicle @toggleIsOpen="toggleEmployeeList()" v-bind:options="{ name: vehicle.name, isOpen: true }" v-bind:seats="vehicle.seats"></vehicle>
+                        <vehicle @toggleIsOpen="toggleEmployeeList()" v-bind:options="{ name: vehicle.name, color: vehicle.color, isOpen: true }" v-bind:seats="vehicle.seats"></vehicle>
                     </div>
                 </div>
             </div>

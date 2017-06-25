@@ -2,6 +2,7 @@
 <template>
     <div id="vehicle">
         <h3 @click="isOpen = !isOpen">
+            <span class="color-badge" v-bind:style="{ 'background-color': color }"></span>
             <span class="name" v-text="name"></span>
             <span class="amount-seats-str">
                 {{ seatsAmountString }}
@@ -35,6 +36,7 @@ export default {
         return {
             name: this.options.name,
             isOpen: this.options.isOpen,
+            color: this.options.color
         }
     },
     props: [
@@ -85,6 +87,14 @@ export default {
         padding: 5px 10px
 
         &:hover { cursor: pointer }
+
+        span.color-badge
+            border-radius: 10px
+            display: inline-block
+            width: 15px
+            height: 15px
+            border-radius: 15px
+            margin-right: 10px
 
         span.name
             margin-right: 10px
