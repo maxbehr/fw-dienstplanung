@@ -14,7 +14,7 @@ const store = new Vuex.Store({
 	actions: {
 		LOAD_CONFIG: function ({ commit }) {
             let self = this;
-            let uri = 'src/config/config.json';
+            let uri = 'config/config.json';
             axios.get(uri)
                 .then(function (response) {
                     commit('SET_CONFIG', { list: response.data });

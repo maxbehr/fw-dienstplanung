@@ -5,5 +5,7 @@ dist/build.css
 yarn-error.log
 npm-debug.log
 
+config/
+
 *.sublime-project
 *.sublime-workspace
