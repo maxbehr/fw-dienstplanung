@@ -4,6 +4,9 @@
         <h3 @click="isOpen = !isOpen">
             <span class="name" v-text="name"></span>
             <span>
+                {{ seatsAmountString }}
+            </span>
+            <span>
                 <i v-if="isFullySeated" class="fa fa-check"></i>
             </span>
         </h3>
@@ -61,7 +64,12 @@ export default {
     },
     computed: {
         isFullySeated: function() {
-            return this.seats.every(s => s.employee !== null);
+            return this.seats.filter(s => s.isActive).every(s => s.employee !== null);
+        },
+        seatsAmountString: function() {
+            let allSeatedSeats = this.seats.filter(s => s.employee !== null).length;
+            let allActiveSeats = this.seats.filter(s => s.isActive).length;
+            return `${allSeatedSeats}/${allActiveSeats}`;
         }
     }
 }
