@@ -3,7 +3,7 @@
     <div id="vehicle">
         <h3 @click="isOpen = !isOpen">
             <span class="name" v-text="name"></span>
-            <span>
+            <span class="amount-seats-str">
                 {{ seatsAmountString }}
             </span>
             <span>
@@ -88,6 +88,9 @@ export default {
 
         span.name
             margin-right: 10px
+
+        span.amount-seats-str
+            font-size: 0.8em
 
         .fa-check { color: green }
 
