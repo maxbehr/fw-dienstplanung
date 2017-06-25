@@ -6,7 +6,6 @@
                 <span class="icon"><i class="fa fa-user-o"></i></span>
                 <span v-text="employee.firstName"></span>
                 <span v-text="employee.lastName"></span>
-                <span v-text="employee.license.HLF"></span>
             </li>
         </ul>
     </div>
